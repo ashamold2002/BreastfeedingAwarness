@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Breastfeeding Awareness Landing Page</title>
+<style>
+  /* Reset */
+   * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+    body, html {
+      height: 100%;
+      
+      background: linear-gradient(135deg, #fcefee, #ffd7e0);
+      overflow-x: hidden;
+      color: #6d1b3b;
+      scroll-behavior: smooth;
+    }
+
+    /* Container */
+    .landing-container {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Heading animations */
+    h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      animation: fadeInDown 1.5s ease forwards;
+      opacity: 0;
+      color: #d81e5b;
+      text-shadow: 0 2px 6px rgba(216,30,91,0.5);
+    }
+    h2 {
+      font-weight: 500;
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      animation: fadeInUp 1.5s ease forwards;
+      opacity: 0;
+      color: #a31744;
+      max-width: 600px;
+    }
+
+    /* Button */
+    button.start-btn {
+      background-color: #d81e5b;
+      color: white;
+      border: none;
+      padding: 1rem 2.5rem;
+      font-size: 1.2rem;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(216, 30, 91, 0.5);
+      transition: background-color 0.3s ease;
+      animation: fadeInUp 2s ease forwards;
+      opacity: 0;
+    }
+    button.start-btn:hover {
+      background-color: #b21443;
+      box-shadow: 0 6px 20px rgba(178, 20, 67, 0.7);
+    }
+
+    /* GIF style */
+    .celebration-gif {
+      max-width: 280px;
+      margin: 1.5rem auto 2rem;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(216,30,91,0.3);
+      animation: fadeIn 3s ease forwards;
+      opacity: 0;
+    }
+
+    /* Confetti */
+    .confetti {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 9999;
+      overflow: visible;
+    }
+    .confetti-piece {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: #d81e5b;
+      opacity: 0.7;
+      animation-name: confetti-fall;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      border-radius: 2px;
+    }
+    .confetti-piece:nth-child(odd) {
+      background-color: #ff4584;
+    }
+    .confetti-piece:nth-child(even) {
+      background-color: #ff77a9;
+    }
+
+    @keyframes confetti-fall {
+      0% {
+        transform: translateY(-10px) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Balloon animation */
+    .balloon {
+      position: fixed;
+      bottom: -100px;
+      width: 40px;
+      height: 60px;
+      background: radial-gradient(circle at center, #f06292, #d81e5b);
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      opacity: 0.8;
+      animation-name: floatUp;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+    }
+    .balloon:after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      width: 2px;
+      height: 15px;
+      background-color: #a31744;
+      transform: translateX(-50%);
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.8;
+      }
+      50% {
+        transform: translateY(-30px) scale(1.05);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-60vh) scale(1);
+        opacity: 0;
+      }
+    }
+
+    /* Different delays for balloons */
+    .balloon:nth-child(1) {
+      left: 10%;
+      animation-duration: 8s;
+      animation-delay: 0s;
+    }
+    .balloon:nth-child(2) {
+      left: 30%;
+      width: 30px;
+      height: 45px;
+      animation-duration: 7s;
+      animation-delay: 2s;
+    }
+    .balloon:nth-child(3) {
+      left: 50%;
+      animation-duration: 9s;
+      animation-delay: 4s;
+    }
+    .balloon:nth-child(4) {
+      left: 70%;
+      width: 35px;
+      height: 52px;
+      animation-duration: 6.5s;
+      animation-delay: 1s;
+    }
+    .balloon:nth-child(5) {
+      left: 90%;
+      animation-duration: 8.5s;
+      animation-delay: 3s;
+    }
+
+    /* Animations */
+    @keyframes fadeInDown {
+      0% {
+        opacity: 0;
+        transform: translateY(-40px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes fadeIn {
+      0% {opacity: 0;}
+      100% {opacity: 1;}
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+      h2 {
+        font-size: 1.1rem;
+        max-width: 90%;
+      }
+      .celebration-gif {
+        max-width: 180px;
+      }
+      button.start-btn {
+        font-size: 1rem;
+        padding: 0.8rem 2rem;
+      }
+    }
+  /* Background hearts animation */
+  .heart {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    background-color: rgba(216, 0, 95, 0.15);
+    transform: rotate(-45deg);
+    animation-name: floatUp;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    border-radius: 3px 3px 0 0;
+    z-index: 0;
+    opacity: 0.7;
+  }
+  .heart::before,
+  .heart::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: rgba(216, 0, 95, 0.15);
+    border-radius: 50%;
+  }
+  .heart::before {
+    top: -10px;
+    left: 0;
+  }
+  .heart::after {
+    left: 10px;
+    top: 0;
+  }
+  @keyframes floatUp {
+    0% {
+      transform: translateY(100vh) rotate(-45deg);
+      opacity: 0.7;
+    }
+    100% {
+      transform: translateY(-10vh) rotate(-45deg);
+      opacity: 0;
+    }
+  }
+
+  /* Header */
+  header {
+    position: sticky;
+    top: 0;
+    background: #d81e5b;
+    color: white;
+    padding: 1.5rem 1rem;
+    font-size: 2.2rem;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 1.2px;
+    box-shadow: 0 5px 10px rgba(216, 30, 90, 0.7);
+    z-index: 10;
+    user-select: none;
+  }
+
+  /* Container */
+  main {
+    max-width: 900px;
+    margin: 2rem auto 4rem auto;
+    padding: 1rem 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(216, 30, 90, 0.1);
+    position: relative;
+    z-index: 5;
+  }
+
+  /* Intro text */
+  #intro {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    color: #6b2050;
+  }
+
+  /* Gallery Section */
+  #gallery {
+    margin-top: 3rem;
+  }
+  #gallery h2 {
+    color: #d81e5b;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 15px;
+  }
+  .gallery-grid img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(216, 30, 90, 0.2);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .gallery-grid img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(216, 30, 90, 0.35);
+  }
+
+  /* Audio Player */
+  #audio-player {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #d81e5b;
+    border-radius: 50px;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 5px 15px rgba(216, 30, 90, 0.7);
+    cursor: pointer;
+    z-index: 1000;
+    user-select: none;
+  }
+  #audio-player svg {
+    fill: white;
+    width: 28px;
+    height: 28px;
+    transition: transform 0.3s ease;
+  }
+  #audio-player:hover {
+    background: #b71c46;
+  }
+  #audio-player.paused svg.play {
+    display: block;
+  }
+  #audio-player.paused svg.pause {
+    display: none;
+  }
+  #audio-player.playing svg.play {
+    display: none;
+  }
+  #audio-player.playing svg.pause {
+    display: block;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    main {
+      padding: 1rem 1rem;
+      margin: 1rem;
+    }
+    header {
+      font-size: 1.5rem;
+      padding: 1rem 0;
+    }
+  }
+   /* Slideshow container */
+    .slideshow-container {
+      max-width: 900px;
+      position: relative;
+      margin: 3rem auto 4rem;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(216,30,91,0.3);
+      background: white;
+    }
+
+    /* Slides */
+    .mySlides {
+      display: none;
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 15px;
+    
+    }
+
+    /* Next & previous buttons */
+    .prev, .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      width: 40px;
+      height: 40px;
+      margin-top: -20px;
+      color: #d81e5b;
+      font-weight: bold;
+      font-size: 30px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.7);
+      user-select: none;
+      transition: background-color 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 3px 10px rgba(216,30,91,0.4);
+    }
+    .prev:hover, .next:hover {
+      background-color: #d81e5b;
+      color: white;
+      box-shadow: 0 6px 20px rgba(216,30,91,0.8);
+    }
+    .prev {
+      left: 15px;
+    }
+    .next {
+      right: 15px;
+    }
+
+    /* Caption text */
+    .caption {
+      color: #6d1b3b;
+      font-size: 1.1rem;
+      padding: 12px 16px;
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 0 0 15px 15px;
+      user-select: none;
+    }
+
+    /* Dots */
+    .dot-container {
+      text-align: center;
+      margin: 15px 0 30px 0;
+    }
+    .dot {
+      cursor: pointer;
+      height: 15px;
+      width: 15px;
+      margin: 0 7px;
+      background-color: #ff77a9;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 0 8px rgba(255, 119, 169, 0.7);
+    }
+    .dot.active {
+      background-color: #d81e5b;
+      box-shadow: 0 0 12px rgba(216, 30, 91, 0.9);
+    }
+    /* Download apps section */
+    .download-section {
+      max-width: 900px;
+      margin: 3rem auto 4rem;
+      padding: 2rem;
+      background: #ffe6ef;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(216,30,91,0.15);
+      text-align: center;
+      color: #a31744;
+    }
+    .download-section h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+    .download-buttons {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .download-btn {
+      background: #d81e5b;
+      color: white;
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      border-radius: 30px;
+      text-decoration: none;
+      box-shadow: 0 5px 15px rgba(216, 30, 91, 0.5);
+      transition: background-color 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-weight: 600;
+    }
+    .download-btn:hover {
+      background-color: #b21443;
+      box-shadow: 0 6px 20px rgba(178, 20, 67, 0.7);
+    }
+    .download-btn svg {
+      width: 20px;
+      height: 20px;
+      fill: white;
+    }
+
+    /* Responsive */
+    @media (max-width: 700px) {
+      .mySlides {
+        height: 250px;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      h2 {
+        font-size: 1.1rem;
+        max-width: 90%;
+      }
+      button.start-btn {
+        font-size: 1rem;
+        padding: 0.8rem 2rem;
+      }
+    }
+
+</style>
+</head>
+<body>
+
+<header>🤱 Welcome to Motherhood</header>
+<div class="confetti" id="confetti-container"></div>
+
+  <!-- Balloons -->
+  <div class="balloon"></div>
+  <div class="balloon"></div>
+  <div class="balloon"></div>
+  <div class="balloon"></div>
+  <div class="balloon"></div>
+
+  <!-- Landing container -->
+  <div class="landing-container">
+    <h1>🎉 Congratulations to All Mothers & Pregnant Ladies! 🤰👶</h1>
+    <h2>Welcome to your breastfeeding awareness journey. We celebrate you and are here to support you every step of the way.</h2>
+    
+    <img 
+      src="Images/celebration.avif" 
+      alt="Celebration GIF" 
+      class="celebration-gif"
+      aria-hidden="true"
+    />
+
+    <button class="start-btn" onclick="document.getElementById('intro').scrollIntoView({behavior:'smooth'})">
+      Start Learning
+    </button>
+  </div>
+
+
+<main>
+  <section id="intro" style="max-height: 450px; overflow-y: auto; padding-right: 10px;">
+  <h2>Breastfeeding Awareness</h2>
+
+  <h3>1. Breastfeeding Education</h3>
+
+  <h4>Importance of Breastfeeding:</h4>
+  <ul>
+    <li>Breast milk is the ideal nutrition for infants. It contains all nutrients in correct proportions for the first 6 months.</li>
+    <li>It provides antibodies that help babies fight viruses and bacteria.</li>
+    <li>Reduces risk of diarrhea, pneumonia, ear infections in infants.</li>
+    <li>Promotes emotional bonding between mother and baby.</li>
+    <li>Helps in uterine contraction and reduces postpartum bleeding.</li>
+    <li>Long-term benefits: Reduces risk of obesity, diabetes, and breast cancer in mothers.</li>
+  </ul>
+
+  <h4>Family’s Role:</h4>
+  <ul>
+    <li>Help mother stay relaxed and confident</li>
+    <li>Assist with household chores</li>
+    <li>Provide nutritious meals and fluids for the mother</li>
+    <li>Avoid offering bottles or pacifiers</li>
+    <li>Support and encourage continued breastfeeding</li>
+  </ul>
+
+  <h4>Before Breastfeeding (During Pregnancy):</h4>
+  <ul>
+    <li><strong>Eat a Balanced Diet:</strong> Rice, wheat, dal, milk, eggs, vegetables, fruits, nuts</li>
+    <li><strong>Eat Protein-Rich Foods:</strong> Milk, curd, dal, eggs, chicken, fish, paneer</li>
+    <li><strong>Iron-Rich Foods:</strong> Greens, dates, jaggery, dry fruits</li>
+    <li>Drink lemon juice to help absorb iron</li>
+  </ul>
+
+  <h4>During Breastfeeding (Diet):</h4>
+  <ul>
+    <li><strong>Eat More Calories:</strong> Eat one extra meal or snack daily (banana, nuts, porridge)</li>
+    <li><strong>More Protein:</strong> Milk, dal, egg, sprouts, chicken</li>
+    <li><strong>Healthy Fats:</strong> Ghee, nuts, seeds, coconut</li>
+    <li><strong>Whole Grains:</strong> Ragi, oats, wheat, millets</li>
+    <li><strong>More Fruits & Veggies:</strong> Eat 3–5 servings daily (include greens & colourful fruits)</li>
+    <li><strong>Iron & Calcium:</strong> Dates, jaggery, milk, ragi</li>
+    <li><strong>Drink Enough Water:</strong> Drink a glass of water before and after feeding</li>
+    <li><strong>Avoid or Limit:</strong> Too much tea/coffee, alcohol, spicy or junk food</li>
+  </ul>
+
+  <h3>Nutritive Value of Breast Milk</h3>
+  <ul>
+    <li><strong>Energy:</strong> Gives enough energy for the baby to grow healthy (65–70 kcal in 100 ml)</li>
+    <li><strong>Carbohydrates (Sugar):</strong> Main sugar is lactose, helps baby’s brain grow and gives energy</li>
+    <li><strong>Proteins:</strong> Easy to digest, helps build baby’s muscles and immune system, contains antibodies to fight infections</li>
+    <li><strong>Fats:</strong> Gives half of the baby’s energy, needed for brain and eye development, includes good fats like DHA</li>
+    <li><strong>Vitamins:</strong> Includes Vitamin A, D, E, K, C, B — good eyesight, strong bones, immunity, healthy skin & blood</li>
+    <li><strong>Minerals:</strong> Calcium, iron, zinc, phosphorus — bone growth, making blood, protecting from illness</li>
+    <li><strong>Water:</strong> Breast milk has 88% water, keeps baby hydrated — no need for extra water</li>
+    <li><strong>Special Protective Factors:</strong> Antibodies, enzymes, hormones protect baby from cold, diarrhea, and other illnesses</li>
+  </ul>
+
+  <h4>Nutritional Value of 100 ml Breast Milk:</h4>
+  <ul>
+    <li>Energy: 65–70 kcal</li>
+    <li>Water: 88 ml</li>
+    <li>Carbohydrates: 7 g</li>
+    <li>Protein: 1.0–1.5 g</li>
+    <li>Fat: 3.5–4.5 g</li>
+    <li>Calcium: 28 mg</li>
+    <li>Iron: 0.2–0.4 mg</li>
+    <li>Vitamin A: 60 mcg</li>
+    <li>Vitamin C: 5 mg</li>
+  </ul>
+
+  <h3>Breastfeeding Positions</h3>
+  <ol>
+    <li>Cradle Hold</li>
+    <img src="Images/cradle.jpg" style="width: 300px;height: 300px;"/>
+    <li>Cross-Cradle Hold</li>
+    <img src="Images/crosscradle.jpg" style="width: 300px;height: 300px;"/>
+    <li>Football Hold (Clutch Hold)</li>
+    <img src="Images/footballhold.jpg" style="width: 300px;height: 300px;"/>
+    <li>Side-Lying Position</li>
+    <img src="Images/sidelying.jpg" style="width: 300px;height: 300px;"/>
+    <li>Laid-back (Reclined) Position</li>
+    <img src="Images/laidback.jpg" style="width: 300px;height: 300px;"/>
+    <li>Upright Position</li>
+    <img src="Images/upright.jpg" style="width: 300px;height: 300px;"/>
+  </ol>
+
+  <h3>Signs of Good Attachment</h3>
+  <ul>
+    <li>Baby’s chin is close to the breast</li>
+    <li>Baby’s tongue is under the lactiferous sinus and nipple against the palate</li>
+    <li>Baby’s mouth is wide open and the lower lip turned outwards</li>
+    <li>More areola is visible above the baby’s mouth than below it</li>
+    <li>No pain while breastfeeding</li>
+  </ul>
+  <div style="flex-direction: row;">
+    <div style="display: inline;">
+      <img src="Images/goods1.jpg" style="width: 200px;height: 200px;"/>
+    </div>
+    <div style="display: inline;">
+     <img src="Images/goods2.jpg" style="width: 200px;height: 200px;"/>
+    </div>
+  </div>
+
+  <h3>Signs of Poor Attachment</h3>
+  <ul>
+    <li>Nose is pressed against areola</li>
+    <li>Lips not holding nipple with grip</li>
+  </ul>
+  <div >
+      <img src="Images/bads1.jpg" style="width: 200px;height: 200px;"/>
+    </div>
+
+  <h3>Benefits of Breastfeeding</h3>
+  <h4>For the Baby:</h4>
+  <ul>
+    <li>Increased bonding</li>
+    <li>Improved cognitive and motor development</li>
+    <li>Improved growth and nutritional status</li>
+    <li>Boosts immunity</li>
+    <li>Improves digestion</li>
+    <li>Healthy weight gain</li>
+    <li>Lower risk of chronic diseases (diabetes, heart disease, asthma)</li>
+  </ul>
+
+  <h4>For the Mother:</h4>
+  <ul>
+    <li>Faster maternal recovery</li>
+    <li>Less postpartum depression</li>
+    <li>Lower risk of ovarian and breast cancer</li>
+    <li>Cost-effective</li>
+    <li>Promotes bonding</li>
+    <li>Faster weight loss</li>
+    <li>Less likely to become pregnant in early months</li>
+  </ul>
+
+  <h3>Care of Breast – Before & After Feeding</h3>
+  <h4>Before Feeding:</h4>
+  <ul>
+    <li>Wash hands with soap and water</li>
+    <li>Check nipples for cracks or soreness</li>
+    <li>Wipe breast gently with clean cloth (no need to wash every time)</li>
+    <li>Sit comfortably and support the breast</li>
+  </ul>
+
+  <h4>After Feeding:</h4>
+  <ul>
+    <li>Let a few drops of breast milk dry on the nipple</li>
+    <li>Keep breast and nipple dry</li>
+    <li>Wear clean, soft cotton bra</li>
+    <li>Change breast pads if they are wet</li>
+    <li>Avoid tight clothing</li>
+  </ul>
+
+  <h3>Expression of Breast Milk</h3>
+  <h4>Methods of Expression:</h4>
+  <ul>
+    <li>Hand Expression – Using your hands to squeeze milk out</li>
+    <li>Manual Breast Pump – A hand-operated device to extract milk</li>
+    <li>Electric Breast Pump – Uses electricity to pump milk more efficiently</li>
+  </ul>
+
+  <h4>When to Express Milk:</h4>
+  <ul>
+    <li>Baby is not able to suck properly</li>
+    <li>Mother is away from the baby (e.g., work)</li>
+    <li>To relieve breast engorgement (fullness)</li>
+    <li>To increase milk supply</li>
+  </ul>
+
+  <h4>Storage of Expressed Milk:</h4>
+  <ul>
+    <li>Room temperature: up to 4 hours</li>
+    <li>Refrigerator: up to 4 days</li>
+    <li>Freezer: up to 6 months</li>
+  </ul>
+
+  <h3>Milk Bank</h3>
+  <p>A milk bank is a place where breast milk donated by healthy mothers is collected, tested, stored, and given to babies who need it.</p>
+
+  <h4>Who needs donated milk?</h4>
+  <ul>
+    <li>Premature babies</li>
+    <li>Sick or weak babies</li>
+    <li>Babies whose mothers cannot produce milk</li>
+  </ul>
+
+  <h4>Steps in Milk Banking:</h4>
+  <ol>
+    <li>Healthy mothers donate extra milk</li>
+    <li>Milk is tested and safely stored</li>
+    <li>Given to babies in hospitals</li>
+  </ol>
+
+  <h4>Is it safe?</h4>
+  <p>Yes! All milk is tested, pasteurized (gently heated), and handled safely.</p>
+
+  <h4>Who can donate?</h4>
+  <ul>
+    <li>Healthy mothers</li>
+    <li>Not taking harmful medicines</li>
+    <li>Willing to follow clean and safe methods</li>
+  </ul>
+</section>
+
+
+  <!-- Slideshow Gallery -->
+  <div class="slideshow-container" aria-label="Gallery slideshow of breastfeeding awareness images">
+    <img class="mySlides" src="Images/1.jpg"  />
+    <img class="mySlides" src="Images/2.jpg"  />
+    <img class="mySlides" src="Images/3.jpg" />
+   
+    
+    <a class="prev" aria-label="Previous image" tabindex="0">&#10094;</a>
+    <a class="next" aria-label="Next image" tabindex="0">&#10095;</a>
+    
+    <!-- <div class="caption" id="caption"></div> -->
+  </div>
+
+  <!-- Dots -->
+  <div class="dot-container" aria-label="Gallery navigation dots">
+    <span class="dot" tabindex="0" aria-label="Select image 1"></span> 
+    <span class="dot" tabindex="0" aria-label="Select image 2"></span> 
+    <span class="dot" tabindex="0" aria-label="Select image 3"></span> 
+    <span class="dot" tabindex="0" aria-label="Select image 4"></span> 
+  </div>
+
+</main>
+ <section class="download-section" aria-label="Download our breastfeeding apps">
+    <h3>Download Our Apps</h3>
+    <p>Get our helpful breastfeeding support apps on your mobile device.</p>
+    <div class="download-buttons">
+      <a href="https://play.google.com/store/apps/details?id=com.naraorganics.nara" target="_blank" rel="noopener" class="download-btn" aria-label="Download Android app">
+        <!-- Google Play icon SVG -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M3.8 2.4L19.3 11.3 3.8 20.2z" />
+        </svg>
+        Android
+      </a>
+      <a href="https://apps.apple.com/in/app/nara-baby-pregnancy-tracker/id1444639029" target="_blank" rel="noopener" class="download-btn" aria-label="Download iOS app">
+        <!-- Apple icon SVG -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M16.67 1.43c-.69.83-1.29 2.15-1.06 3.4 1.13.09 2.38-.63 3.14-1.4-.64-.58-1.37-1.5-2.08-2zm-4.46 2.8a5.25 5.25 0 00-1.44 1.41c-1.14 1.56-.9 4.27 1.41 5.13 1.07.47 2.35.22 3.19-.56-1.05-1.09-2.74-3.34-3.16-6a4.97 4.97 0 00-.02-.08zM7.5 10.83c-2.36 0-4.52 1.38-5.62 3.6-1.09 2.22-.65 5.23 1.02 7.16 1.13 1.36 3.2 2.24 5.18 1.54 1.06-.38 2.12-1.32 2.7-2.14a.6.6 0 00.07-.1 3.17 3.17 0 01-.04-1.36c.03-.25.06-.5.06-.77 0-1.88-.5-4.2-3.5-4.2z"/>
+        </svg>
+        iOS
+      </a>
+    </div>
+  </section>
+
+
+<!-- Audio Player -->
+<div id="audio-player" class="paused" title="Play/Pause background music" role="button" aria-label="Play background music" tabindex="0">
+  <audio id="background-music" loop preload="auto">
+    <!-- Replace this URL with your own music file URL -->
+    <source src="Images/music.mp3" type="audio/mpeg" />
+    Your browser does not support the audio element.
+  </audio>
+  <svg class="play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M8 5v14l11-7z"/>
+  </svg>
+  <svg class="pause" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" style="display:none;">
+    <path d="M6 19h4V5H6zm8-14v14h4V5z"/>
+  </svg>
+</div>
+
+<script>
+  // Create multiple hearts with random positions and delays
+  for(let i=0; i<20; i++) {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.width = heart.style.height = (10 + Math.random()*20) + 'px';
+    heart.style.animationDuration = (10 + Math.random()*15) + 's';
+    heart.style.animationDelay = (Math.random()*20) + 's';
+    document.body.appendChild(heart);
+  }
+
+  // Audio player toggle logic
+  const player = document.getElementById('audio-player');
+  const audio = document.getElementById('background-music');
+
+  function toggleAudio() {
+    if(audio.paused) {
+      audio.play();
+      player.classList.remove('paused');
+      player.classList.add('playing');
+      player.setAttribute('aria-label', 'Pause background music');
+    } else {
+      audio.pause();
+      player.classList.remove('playing');
+      player.classList.add('paused');
+      player.setAttribute('aria-label', 'Play background music');
+    }
+  }
+
+  player.addEventListener('click', toggleAudio);
+  player.addEventListener('keydown', (e) => {
+    if(e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggleAudio();
+    }
+  });
+   
+    // Create multiple confetti pieces
+    const confettiContainer = document.getElementById('confetti-container');
+    const colors = ['#d81e5b', '#ff4584', '#ff77a9', '#d63384', '#ff96b6'];
+
+    function createConfettiPiece() {
+      const confetti = document.createElement('div');
+      confetti.classList.add('confetti-piece');
+      confetti.style.left = Math.random() * 100 + 'vw';
+      confetti.style.width = confetti.style.height = (5 + Math.random() * 8) + 'px';
+      confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      confetti.style.animationDuration = (3 + Math.random() * 3) + 's';
+      confetti.style.animationDelay = Math.random() * 5 + 's';
+      return confetti;
+    }
+
+    for(let i = 0; i < 50; i++) {
+      confettiContainer.appendChild(createConfettiPiece());
+    }
+    // Slideshow
+    let slideIndex = 0;
+    const slides = document.getElementsByClassName("mySlides");
+    const dots = document.getElementsByClassName("dot");
+    const captions = [
+      "Mother breastfeeding baby - Image 1",
+      "Mother breastfeeding baby - Image 2",
+      "Mother breastfeeding baby - Image 3",
+      "Mother breastfeeding baby - Image 4",
+    ];
+    const captionText = document.getElementById("caption");
+
+    function showSlides(n) {
+      if (n >= slides.length) { slideIndex = 0; }
+      if (n < 0) { slideIndex = slides.length - 1; }
+      for(let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+        dots[i].classList.remove("active");
+      }
+      slides[slideIndex].style.display = "block";
+      dots[slideIndex].classList.add("active");
+      captionText.textContent = captions[slideIndex];
+    }
+
+    function nextSlide() {
+      slideIndex++;
+      showSlides(slideIndex);
+    }
+
+    function prevSlide() {
+      slideIndex--;
+      showSlides(slideIndex);
+    }
+
+    for(let i = 0; i < dots.length; i++) {
+      dots[i].addEventListener('click', () => {
+        slideIndex = i;
+        showSlides(slideIndex);
+      });
+      dots[i].addEventListener('keypress', (e) => {
+        if(e.key === 'Enter' || e.key === ' ') {
+          slideIndex = i;
+          showSlides(slideIndex);
+        }
+      });
+    }
+
+    document.querySelector('.prev').addEventListener('click', prevSlide);
+    document.querySelector('.next').addEventListener('click', nextSlide);
+
+    // Keyboard accessibility for prev/next buttons
+    document.querySelector('.prev').addEventListener('keypress', e => {
+      if(e.key === 'Enter' || e.key === ' ') prevSlide();
+    });
+    document.querySelector('.next').addEventListener('keypress', e => {
+      if(e.key === 'Enter' || e.key === ' ') nextSlide();
+    });
+
+    // Initialize
+    showSlides(slideIndex);
+  
+</script>
+
+</body>
+</html>
